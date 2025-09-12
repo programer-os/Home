@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cards</title>
+      <style>
+    body {
+      background: linear-gradient(135deg, #6DC7E270 0%, #9E1CFF70 100%);
+      height: 500;
+      min-height: 97vh;
+  font-family: Arial, sans-serif;
+      
+      margin: 10px 10px 10px 10px;
+      right: 10px;
+      left: 15px;
+      max-width:99%;
+      width:1280px;
+    }
+
+    .navbar {
+      margin: 0;
+      top: 0;
+      font-size: 1.5em;
+    }
+
+    .navbar,
+    .footer {
+      background: linear-gradient(90deg, #43CEA28A 0%, #58A6FFA8 100%);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(49, 159, 94, 0.18);
+      border-radius: 0 0 14px 14px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-height: 50px;
+      position: fixed;
+      max-width: 1280px;
+
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 0;
+      font-size: 0.95em;
+    }
+
+    .container {
+      padding: 80px 16px 60px 16px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .menu-btn,
+    .logout-btn,
+    .open-sidebar-btn {
+      background: linear-gradient(90deg, #A01EF773 0%, #82DAFFAB 100%);
+      color: #232323;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(208, 98, 98, 0.46);
+      padding: 10px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      margin: 4px 4px;
+      font-size: .5em;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .menu-btn:hover,
+    .logout-btn:hover,
+    .open-sidebar-btn:hover {
+      background: linear-gradient(90deg, #ffd200 0%, #f7971e 100%);
+      box-shadow: 0 4px 12px rgba(60, 60, 60, 0.22);
+    }
+
+    .menu-btn.active {
+      background: #4EBC76A6;
+    }
+
+    .card {
+      background: linear-gradient(120deg, #C3DB2917 0%, #60E5F5B3 100%);
+      border-radius: 16px;
+      box-shadow: 10px 8px 24px rgba(183, 67, 190, 0.45), 0 1.5px 6px rgba(215, 100, 197, 0.43);
+      border: none;
+      margin: 16px 20px 20px 20px;
+      padding: 20px 14px;
+      display: flex;
+      max-width: 100%;
+      max-height:1080px;
+      height:90vh;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.04) translateY(-2px);
+      box-shadow: 0 16px 40px rgba(30, 41, 59, 0.32), 0 3px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .card h3 {
+      margin: 0 0 8px 0;
+      color: #5C6AC4;
+    }
+
+    .card a {
+      color: #3b82f6;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      background: linear-gradient(135deg, #6A1C9387 0%, #c3cfe2 100%);
+      box-shadow: 2px 0 14px rgba(153, 32, 23, 0.43);
+      border-radius: 0 18px 18px 0;
+      padding: 24px 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transform: translateX(-100%);
+      transition: transform 0.5s;
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.2);
+      z-index: 19;
+      display: none;
+    }
+
+    .sidebar-overlay.active {
+      display: block;
+    }
+
+    .open-sidebar-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 30;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.6em;
+      cursor: pointer;
+      align-self: flex-end;
+      margin-right: 14px;
+    }
+
+    .layout {
+      display: flex;
+      height: 200vh;
+      max-width: 1350px;
+    }
+
+    .sidebar-left {
+      width: 300px;
+      background: #FF006A6E;
+    }
+
+    .main-content {
+      flex: 1;
+      background: #1BFFB0BF;
+      padding: 16px;
+     width: 700px;
+    }
+
+    .sidebar-right {
+      width: 300px;
+      background: #2CCDCDA3;
+      padding: 16px;
+      margin: 10px 15px 20px;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        max-width: 95vw;
+        padding: 80px 2vw 60px 2vw;
+      }
+
+      .sidebar-left,
+      .sidebar-right {
+        display: none;
+      }
+
+      .main-content {
+        width: 720px;
+        padding: 8px 8px;
+      }
+    }
+    .iframe {
+      width:1280px;
+      height:1080px;
+      
+    }
+    .card .iframe {
+      min-height: 90;
+    }
+  
+
+  </style>
+
+    
+</head>
+
+<body>
+    
+      <div class="card">
+        <h2>home</h2>
+        <p>Hecho por ella-ARTE</p>
+      <!--  <img src="https://uploads.onecompiler.io/43sfe2g4e/43uaxht5p/Screenshot_20250808-025347.png"
+          style="width:; border:3px solid pink;">
+        <p>Comenta!</p>
+  -->
+  <iframe src="webbs.html" style="height:720px;">
+    
+  </iframe>
+  </div>
+      <div class="card">
+        <h3>PROTAFOLIO PROGRAMER OS .o</h3>
+    <!--    <img src="https://uploads.onecompiler.io/43sfe2g4e/43uaxht5p/image_1756007342901.png">
+ -->
+ <iframe src="dxProfweb.html" style="height: 720px;">
+   
+ </iframe>
+      </div>
+      <div class="card">
+        <h3>ia us.html</h3>
+        <p>P</p>
+     <!--   <iframe src="IA.US.html" width="89%"
+          height="920px"></iframe>
+        <a href="IA.US.html">Pantalla Completa</a>
+  -->    </div>
+      <div class="card">
+        <h3>MARKETPLACES</h3>
+        <iframe src="MarketplacesOBJ.html" width=""
+          height="1080px"></iframe>
+        <a href="MarketplacesOBJ.html">MarketPlaceObj</a>
+      </div>
+      <div class="card">
+       <iframe src="plantillaLimp.html" style="height:1080px; width;">
+      
+    </iframe>
+    </div>
+      <div class="card">
+      <iframe src="CrudsProfile.html" style="height: 1080px;"></iframe>
+  </a>
+      </div>
+          <!-- Puedes agregar esto en tu archivo HTML donde quieras mostrar el login -->
+      <div class="card">
+        <h3>Iniciar sesión</h3>
+        <form id="loginForm">
+          <input type="text" id="username" placeholder="Nombre de usuario" required>
+          <button type="submit">Entrar</button>
+        </form>
+        <p id="loginStatus"></p>
+    <!--   <iframe src="plantLanding.html" style="height:700px;"></iframe>
+ -->       
+      </div>
+
+
+      <div class="card">
+        <h4>
+          by os.
+        </h4>
+<iframe src="os.html" style="height: 700px;">
+  
+</iframe>
+
+      </div>
+      <div class="card">
+        <!--        <h3>Video de introducción a la programación con Scratch</h3>
+        <iframe width="80%" height="70%" src="https://www.youtube.com/embed/j8qtWlr0IYc?si=6m_byT4weXY4s59H"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <p>¡Felicitaciones por tu trabajo!</p>-->
+      </div>
+
+   
+      <div class="card">
+<iframe src="FirestoreMarketOs.html" style="height:1080px;"></iframe>
+      </div>
+      <div class="card">
+     <iframe src="fushi.html" style="height:1080px;"></iframe>
+      </div>
+      <div class="card">
+       <!-- <h3>Un videito para ver una reseña de Los INCREIBLES 2</h3>
+        <iframe width="100%" height="400" src="https://www.youtube.com/embed/O6hLH52R0ok" frameborder="0"
+          allow="autoplay; encrypted-media;" allowfullscreen></iframe>
+      >-->
+      </div>
+      <div class="card">
+        <h2> MUSIC.HTML</h2>
+       <iframe src="music.html" style="height:1000px;"></iframe>
+      </div>
+      <div class="card">
+        <h2>CRUDS PROFILE</h2>
+      <iframe src="CrudsProfile.html" style="height:1080px;"></iframe>
+      </div>
+      <div class="card">
+        </div>
+        <h3>VAMOS POR ORDEN</h3>
+        <div class="card">
+        
+        </div>
+        <div class="card">
+      </
+        </div>
+        <div class="card">
+  cad<
+        </div>
+        <div class="card">
+         
+        </div>
+        <div class="card">
+          <h3>
+        </div>
+        <div class="card">
+  11
+          <ul>
+            <li><a href=""</a></li>
+       
+          
+        </div>
+    
+</body>
+
+</html>
