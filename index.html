@@ -214,6 +214,42 @@
 </head>
 <body class="flex flex-col h-screen">
 
+     <button class="open-sidebar-btn" onclick="openSidebar()" style="width:80; height: 50;">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <nav class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="closeSidebar()" style="top:100px">×</button>
+    <a href="index.html">index</a>
+    <a href="index2.html">index2</a>
+    <a href="index3.html">index3</a>
+    <a href="config.html">⚙️ Configuración</a>
+    
+      
+      <button class="menu-btn" id="todosBtn">Todos</button>
+      <button class="menu-btn" id="motosBtn">Motos</button>
+      <button class="menu-btn" id="autosBtn">Autos</button>
+      <button class="login-btn" id="loginMenuBtn">Login</button>
+      <button class="logout-btn hidden" id="logoutMenuBtn">Salir</button>
+    </div>
+    </div>
+    
+  </nav>
+  <div class="navbar">
+    <span style="font-weight:bold;">Prof</span>
+<span>
+      <input type="text" id="searchInput" placeholder="Buscar...">
+      <button onclick="searchContent()">Buscar</button>
+    </span>
+    <ul> <span>
+ <button class="menu-btn" onclick="window.location='index.html'">Todos</button>
+   <!--   <button class="menu-btn" onclick="window.location='Projects.html'">Proyectos</button>
+      
+      <button class="menu-btn" onclick="window.location='alumn.html'">Alumnos</button>
+      <button class="menu-btn" onclick="window.location='config.html'">⚙️ Configuración</button>
+      -->
+    </span>
+  
+  </div>
+
     <!-- Desktop: Layout de 3 columnas -->
     <div class="hidden md:grid md:grid-cols-[280px_1fr_280px] h-full">
         <aside class="w-full bg-gray-800 text-white p-6 shadow-lg">
