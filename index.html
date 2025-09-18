@@ -288,9 +288,8 @@
 
 
 
-
-
-         
+-->
+	 
     <script>
         const scrollContainer = document.querySelector('.scroll-container');
         const mainContent = document.getElementById('main-content');
@@ -302,10 +301,21 @@
         }
     </script>
 
-
--->
 </body>
 </html>
+
+   <!--  
+    <script>
+        const scrollContainer = document.querySelector('.scroll-container');
+        const mainContent = document.getElementById('main-content');
+        
+        if (scrollContainer) {
+            window.onload = () => {
+                scrollContainer.scrollLeft = mainContent.offsetLeft;
+            };
+        }
+    </script>
+-->
 
 
 <!DOCTYPE html>
@@ -574,11 +584,18 @@
     </style>
 </head>
 <body class="flex flex-col h-screen">
-
+	 
+    <script>
+        const scrollContainer = document.querySelector('.scroll-container');
+        const mainContent = document.getElementById('main-content');
+        
+        if (scrollContainer) {
+            window.onload = () => {
+                scrollContainer.scrollLeft = mainContent.offsetLeft;
+            };
+        }
+    </script>
     <!-- Desktop: Layout de 3 columnas -->
-
-
-
     <div class="hidden md:grid md:grid-cols-[280px_1fr_280px] h-full">
         <aside class="w-full bg-gray-800 text-white p-6 shadow-lg overflow-y-auto">
             <h2 class="text-xl font-bold mb-4">Menú</h2>
@@ -604,27 +621,23 @@
                 <h1 class="text-3xl font-bold mb-4">Recuerdos</h1>
                 <p class="text-gray-700 leading-relaxed mb-6">Un espacio dedicado a los momentos especiales que compartiste, mostrados de manera cronológica.</p>
                 
-                <div id="gallery-container" class="relative w-full overflow-hidden rounded-lg shadow-lg bg-gray-100">
-                    <div id="gallery-track" class="flex transition-transform duration-500 ease-in-out">
-                        <!-- Tarjeta 1: Cumpleaños de la abuelita (14 de Julio) -->
-                        <div class="gallery-item flex-shrink-0 w-full p-6 text-center">
-                            <h2 class="text-2xl font-semibold text-gray-800 mb-4">14 de Julio - Cumpleaños de la Abuelita</h2>
+          <!-- 1-->     <div id="gallery-container" class="relative w-full overflow-hidden rounded-lg shadow-lg bg-gray-100">
+    <!-- 1-->                   <div id="gallery-track" class="flex transition-transform duration-500 ease-in-out">
+    <!-- 1-->                       <!-- Tarjeta 1: Cumpleaños de la abuelita (14 de Julio) -->
+     <!-- 1-->                      <div class="gallery-item flex-shrink-0 w-full p-6 text-center">
+      <!-- 1-->                         <h2 class="text-2xl font-semibold text-gray-800 mb-4">14 de Julio - Cumpleaños de la Abuelita</h2>
                             <p class="text-sm text-gray-600 mb-6">Un día lleno de alegría y amor para celebrar un año más de vida.</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                 <img src="images/14 de 07 de 2025_foto1.jpg" alt="Cumpleaños de la abuelita" class="w-full h-auto rounded-lg shadow-md">
                                 <img src="images/14 de 07 de 2025_foto2.jpg" alt="Cumpleaños de la abuelita" class="w-full h-auto rounded-lg shadow-md">
-                                <div class="video-wrapper">
+      <!-- 1-->                             <div class="video-wrapper">
                                     <video controls class="w-full h-full rounded-lg shadow-md">
                                         <source src="images/14 de 07 de 2025_video.mp4" type="video/mp4">
                                         Tu navegador no soporta el tag de video.
                                     </video>
-                                    
-                                    
-                                    
-                                    
-                                                                  </div>
-                            										</div>
-                        </div>
+        <!-- 1-->                         </div>
+	  <!-- 1--> 					</div>
+      <!-- 1-->               </div>
                                     
                                     
                                     
@@ -813,6 +826,9 @@
         
         // Mobile navigation function
         window.scrollToSection = (sectionId) => {
+
+		}
+	</script>
          </aside>
     <!--FIN DE LAYOUT-->
     </div>
@@ -871,10 +887,10 @@
         card.style.display = card.textContent.toLowerCase().includes(input) ? '' : 'none';
       });
     }
-  </script>
+ </script>
 
 
-  <p></p>
+//  <p></p>
 //  <!-- Project -->
   <script src="main.js"></script>
 </body>
